@@ -1,0 +1,140 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<style>
+.btn-google {
+    color: #545454;
+    background-color: #e0e0e0;
+    box-shadow: 0 1px 2px 1px #ddd;
+    border-radius: 10px;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.btn-google:hover {
+    background-color: #d1cdd6;
+    box-shadow: 0 2px 4px 2px #bbb; /* Slightly stronger shadow on hover */
+}
+
+
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center
+}
+
+body {
+  background: #e0e0e0;
+}
+
+.login {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+  font-family: 'Comfortaa', cursive;
+  border-radius: 50px;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto 100px;
+  padding: 45px;
+/*  text-align: center; */
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  -11px 11px 22px #bebebe, 11px -11px 22px #ffffff;
+}
+
+.form input {
+  outline: 0;
+  background: #e0e0e0;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.form input:focus {
+  background: #e0e0e0;
+}
+
+.form button {
+  font-family: 'Comfortaa', cursive;
+  text-transform: uppercase;
+  outline: 0;
+  background: #e0e0e0;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:active {
+  background: #395591;
+}
+#div_id_remember{
+display:none;
+}
+
+</style>
+
+<div class="m-auto col-md-8 login-form">
+<div class="content-section form">
+    <form class="login-form" action="" method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4" style="text-align:center">Login</legend>
+            {{form|crispy}}
+        </fieldset>
+
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Login</button>
+            <small class="text-muted ml-2">
+                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+            </small>
+        </div>
+    </form>
+    <div class="or-container">
+        <div class="line-separator"></div>
+        <div class="or-label">or</div>
+        <div class="line-separator"></div>
+    </div>
+
+    <div class="border-top pt-3" style="text-align:center;">
+        <small class="text-muted">
+            Need an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+        </small>
+    </div>
+</div>
+</div>
+{% endblock %}
